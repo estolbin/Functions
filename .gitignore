@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+Arrays/main.exe
+Arrays/tempCodeRunnerFile.cpp
+Arrays/1.txt
