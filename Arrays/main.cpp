@@ -9,6 +9,12 @@ using namespace std;
 #define CHAR_ARRAY
 #define SHORT_ARRAY
 
+int g_a; // Глобальная переменная. 
+
+const int ROWS = 5;
+const int COLS = 8;
+
+
 // перегрузка FillRand
 void FillRand(int arr[], const int n);
 void FillRand(double arr[], const int n);
@@ -16,12 +22,16 @@ void FillRand(float arr[], const int n);
 void FillRand(char arr[], const int n);
 void FillRand(short arr[], const int n);
 
+void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS);
+
 // перегрузка Print
 void Print(int arr[], const int n);
 void Print(double arr[], const int n);
 void Print(float arr[], const int n);
 void Print(char arr[], const int n);
 void Print(short arr[], const int n);
+
+void Print(int arr[ROWS][COLS], const int ROWS, const int COLS);
 
 // перегрузка PrintReverse
 void PrintReverse(int arr[], const int n);
@@ -57,6 +67,9 @@ double maxValueIn(double arr[], const int n);
 float maxValueIn(float arr[], const int n);
 char maxValueIn(char arr[], const int n);
 short maxValueIn(short arr[], const int n);
+
+#define ARRAY_1
+#define ARRAY_2
 
 int main()
 {
@@ -123,6 +136,14 @@ int main()
 	cout << "Минимальное значение в массиве: " << minValueIn(s_arr, n) << endl;
 	cout << "Максимальное значение в массиве: " << maxValueIn(s_arr, n) << endl;
 #endif
+
+	cout << "\n============= 2D ===========\n";
+	int i_arr_2[ROWS][COLS];
+	FillRand(i_arr_2, ROWS, COLS);
+	Print(i_arr_2, ROWS, COLS);
+
+
+
 	return 0;
 }
 //-----------------------------------------------------------------------
@@ -159,6 +180,17 @@ void FillRand(short arr[], const int n)
 	for (int i = 0; i < n; i++)
 	{
 		arr[i] = rand() % 100;
+	}
+}
+
+void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] = rand() % 100;
+		}
 	}
 }
 
@@ -203,6 +235,19 @@ void Print(short arr[], const int n)
 	}
 	cout << endl;
 }
+
+void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			cout << arr[i][j] << tab;
+		}
+		cout << endl;
+	}
+}
+
 //---------------------------------------------------------------------
 void PrintReverse(int arr[], const int n)
 {
