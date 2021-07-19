@@ -23,19 +23,25 @@ void FillRand(char arr[], const int n);
 void FillRand(short arr[], const int n);
 
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS);
+void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T> void Print(T arr[], const int n);
 template<typename T> void Print(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T> void PrintReverse(T arr[], const int n);
+template<typename T> void PrintReverse(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T> T Sum(T arr[], const int n);
+template<typename T> T Sum(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T> double Avg(T arr[], const int n);
+template<typename T> double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T> T minValueIn(T arr[], const int n);
+template<typename T> T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 template<typename T> T maxValueIn(T arr[], const int n);
+template<typename T> T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
 
 #define ARRAY_1
 #define ARRAY_2
@@ -111,7 +117,16 @@ int main()
 	FillRand(i_arr_2, ROWS, COLS);
 	Print(i_arr_2, ROWS, COLS);
 
+	cout << endl << tab << "Double" << endl;
 
+	double d_arr_2[ROWS][COLS];
+	FillRand(d_arr_2, ROWS, COLS);
+	Print(d_arr_2, ROWS, COLS);
+	PrintReverse(d_arr_2, ROWS, COLS);
+	cout << "Сумма элементов массива: " << Sum(d_arr_2, ROWS, COLS) << endl;
+	cout << "Среднее арифметическое: " << Avg(d_arr_2, ROWS, COLS) << endl;
+	cout << "Минимальное значение в массиве: " << minValueIn(d_arr_2, ROWS, COLS) << endl;
+	cout << "Максимальное значение в массиве: " << maxValueIn(d_arr_2, ROWS, COLS) << endl;
 
 	return 0;
 }
@@ -163,6 +178,16 @@ void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS)
 	}
 }
 
+void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			arr[i][j] = double(rand() % 100) / 10;
+		}
+	}
+}
 //---------------------------------------------------------------------
 template<typename T> void Print(T arr[], const int n)
 {
@@ -195,6 +220,17 @@ template<typename T> void PrintReverse(T arr[], const int n)
 	cout << endl;
 }
 
+template<typename T> void PrintReverse(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	for (int i = ROWS-1; i >= 0; i--)
+	{
+		for (int j = COLS-1; j >= 0; j--)
+		{
+			cout << arr[i][j] << tab;
+		}
+		cout << endl;
+	}
+}
 //---------------------------------------------------------------------
 template<typename T> T Sum(T arr[], const int n)
 {
@@ -206,12 +242,28 @@ template<typename T> T Sum(T arr[], const int n)
 	return sum;
 }
 
+template<typename T> T Sum(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	T sum = 0;
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			sum += arr[i][j];
+		}
+	}
+	return sum;
+}
 //---------------------------------------------------------------------
 template<typename T> double Avg(T arr[], const int n)
 {
 	return (double)Sum(arr, n) / n;
 }
 
+template<typename T> double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	return (double)Sum(arr, ROWS, COLS) / (ROWS * COLS);
+}
 //---------------------------------------------------------------------
 template<typename T> T minValueIn(T arr[], const int n) 
 {
@@ -223,6 +275,18 @@ template<typename T> T minValueIn(T arr[], const int n)
 	return min;
 }
 
+template<typename T> T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	T min = arr[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			min = (arr[i][j] < min) ? arr[i][j] : min;
+		}
+	}
+	return min;
+}
 //---------------------------------------------------------------------
 template<typename T> T maxValueIn(T arr[], const int n) 
 {
@@ -234,4 +298,18 @@ template<typename T> T maxValueIn(T arr[], const int n)
 	return max;
 
 }
+
+template<typename T> T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS)
+{
+	T max = arr[0][0];
+	for (int i = 0; i < ROWS; i++)
+	{
+		for (int j = 0; j < COLS; j++)
+		{
+			max = (arr[i][j] > max) ? arr[i][j] : max;
+		}
+	}
+	return max;
+}
+
 //---------------------------------------------------------------------
