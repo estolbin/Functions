@@ -58,6 +58,8 @@ int main()
 	cout << "Среднее арифметическое: " << Avg(c_arr, n) << endl;
 	cout << "Минимальное значение в массиве: " << minValueIn(c_arr, n) << endl;
 	cout << "Максимальное значение в массиве: " << maxValueIn(c_arr, n) << endl;
+	Sort(c_arr, n);
+	Print(c_arr, n);
 #endif
 
 #ifdef SHORT_ARRAY
@@ -71,14 +73,18 @@ int main()
 	cout << "Среднее арифметическое: " << Avg(s_arr, n) << endl;
 	cout << "Минимальное значение в массиве: " << minValueIn(s_arr, n) << endl;
 	cout << "Максимальное значение в массиве: " << maxValueIn(s_arr, n) << endl;
+	Sort(s_arr, n);
+	Print(s_arr, n);
+
 #endif
 
 	cout << "\n============= 2D ===========\n";
 	int i_arr_2[ROWS][COLS];
 	FillRand(i_arr_2, ROWS, COLS);
 	Print(i_arr_2, ROWS, COLS);
-
-
+	cout << "Сумма элементов масиива: " << Sum(i_arr_2, ROWS, COLS) << endl;
+	cout << "Минимальное значение в массиве: " << minValueIn(i_arr_2, ROWS, COLS) << endl;
+	cout << "Максимальное значение в массиве: " << maxValueIn(i_arr_2, ROWS, COLS) << endl;
 
 	return 0;
 }
