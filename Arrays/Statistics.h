@@ -90,6 +90,6 @@ template<typename T> void Sort(T arr[], const int n, int first = 0)
 		}
 	} while (i <= j);
 
-	if (j > 0) sortArr(arr, ++j);
-	if (i < n) sortArr(arr, n, i);
+	if (j > 0) Sort(arr, ++j);
+	if (i < n) Sort(arr, n, i);
 }
